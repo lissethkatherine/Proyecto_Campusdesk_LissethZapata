@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAMPUSDESK - Inicio de sesión</title>
+    <link rel="stylesheet" href="css/styles.css"> <!-- Reutiliza tus estilos existentes -->
+    <style>
+        /* Ajustes y personalización para la marca CAMPUSDESK */
+        :root {
+            --color-principal: #0E3E35;
+            --color-acento: #10B981;
+            --color-oscuro: #0D1E1B;
+        }
+        .banner-izq {
+            background: linear-gradient(135deg, var(--color-oscuro) 0%, #081210 100%);
+        }
+        .btn-primario {
+            background-color: var(--color-acento);
+            border: none;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        .btn-primario:hover {
+            background-color: #059669;
+        }
+    </style>
+</head>
+<body>
+    <div class="split-container" style="display: flex; min-height: 100vh;">
+        <!-- Panel Izquierdo (Branding CAMPUSDESK) -->
+        <div class="banner-izq" style="flex: 1; color: white; padding: 4rem; display: flex; flex-direction: column; justify-content: space-between; background-color: #0D1E1B;">
+            <div>
+                <div class="logo" style="display: flex; align-items: center; gap: 10px; font-weight: bold; font-size: 1.5rem;">
+                    <!-- Icono de rombos entrelazados de la plantilla -->
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 12l10 10 10-10L12 2z"/>
+                        <path d="M12 6L6 12l6 6 6-6-6-6z"/>
+                    </svg>
+                    <div>
+                        <span>CAMPUSDESK</span>
+                        <div style="font-size: 0.8rem; font-weight: normal; opacity: 0.7;">MESA DE AYUDA</div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="max-width: 450px;">
+                <p style="text-transform: uppercase; font-size: 0.8rem; letter-spacing: 2px; opacity: 0.8; margin-bottom: 1rem;">Tu soporte, en un solo lugar</p>
+                <h1 style="font-size: 3rem; font-weight: 800; line-height: 1.1; margin-bottom: 1.5rem;">Tu soporte,<br>bajo control.</h1>
+                <p style="font-size: 1.1rem; opacity: 0.7; line-height: 1.6;">Reportes, incidencias y soluciones. Una plataforma sencilla para el soporte técnico de tu campus.</p>
+
+                <div style="display: flex; gap: 10px; margin-top: 2rem;">
+                    <span style="border: 1px solid rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem;">01 Reporta</span>
+                    <span style="border: 1px solid rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem;">02 Asigna</span>
+                    <span style="border: 1px solid rgba(255,255,255,0.2); padding: 6px 16px; border-radius: 20px; font-size: 0.85rem;">03 Resuelve</span>
+                </div>
+            </div>
+
+            <div style="font-size: 0.9rem; opacity: 0.5;">
+                Mesa de ayuda para CAMPUSDESK
+            </div>
+        </div>
+
+        <!-- Panel Derecho (Formulario) -->
+        <div class="panel-der" style="flex: 1; background: white; display: flex; flex-direction: column; justify-content: center; padding: 4rem; max-width: 600px;">
+            <div style="width: 100%; max-width: 400px; margin: 0 auto;">
+                <span style="color: #0E3E35; font-weight: bold; font-size: 0.8rem; letter-spacing: 1.5px; text-transform: uppercase;">Bienvenido a CAMPUSDESK</span>
+                <h2 style="font-size: 2.5rem; font-weight: 700; margin: 0.5rem 0 0.2rem 0; color: #111;">Inicia sesión</h2>
+                <p style="color: #666; margin-bottom: 2rem;">Accede con tu cuenta para continuar.</p>
+
+                <form id="loginForm" style="display: flex; flex-direction: column; gap: 1.5rem;">
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label for="email" style="font-weight: 600; font-size: 0.9rem; color: #333;">Correo electrónico</label>
+                        <input type="email" id="email" required placeholder="Tu correo electrónico" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem;">
+                    </div>
+
+                    <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <label for="password" style="font-weight: 600; font-size: 0.9rem; color: #333;">Contraseña</label>
+                        <input type="password" id="password" required placeholder="Tu contraseña" style="padding: 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 1rem;">
+                    </div>
+
+                    <details style="font-size: 0.85rem; color: #666; cursor: pointer;">
+                        <summary>Conexión al servidor</summary>
+                        <input type="text" id="apiUrl" value="http://localhost:8056" style="width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ddd; border-radius: 4px;">
+                    </details>
+
+                    <button type="submit" class="btn-primario" style="padding: 14px; border-radius: 6px; font-size: 1rem; font-weight: bold; display: flex; justify-content: center; align-items: center; gap: 10px; margin-top: 1rem;">
+                        Iniciar Sesión <span>→</span>
+                    </button>
+
+                    <p style="text-align: center; font-size: 0.9rem; color: #666; margin-top: 1rem;">
+                        ¿No tienes cuenta? <a href="registro.html" style="color: #10B981; font-weight: bold; text-decoration: none;">Regístrate aquí</a>
+                    </p>
+                </form>
+
+                <div id="mensajeError" style="color: red; font-size: 0.9rem; margin-top: 1rem; text-align: center; display: none;"></div>
+            </div>
+
+            <div style="text-align: center; font-size: 0.8rem; color: #aaa; margin-top: 4rem;">
+                El acceso depende de los permisos de tu cuenta.
+            </div>
+        </div>
+    </div>
+
+    <!-- Script de autenticación -->
+    <script>
+        const storedApiUrl = localStorage.getItem('api_url')
+            || (window.location.port === '5506' ? window.location.origin : 'http://localhost:8056');
+        const apiUrlInput = document.getElementById('apiUrl');
+        if (apiUrlInput) apiUrlInput.value = storedApiUrl;
+
+        // Verificación de sesión previa validando contrato con el backend (sin confiar a ciegas en el token)
+        (async function verifyExistingSession() {
+            const token = sessionStorage.getItem('token');
+            if (!token) return;
+
+            try {
+                const resp = await fetch(`${storedApiUrl}/auth/me`, {
+                    method: 'GET',
+                    headers: { 'Authorization': 'Bearer ' + token }
+                });
+
+                if (resp.ok) {
+                    window.location.replace('dashboard.html');
+                } else {
+                    // Token inválido o revocado en Redis: limpiar almacenamiento
+                    sessionStorage.removeItem('token');
+                    sessionStorage.removeItem('jwt_token');
+                    sessionStorage.removeItem('role');
+                    sessionStorage.removeItem('user_role');
+                    sessionStorage.removeItem('userEmail');
+                    sessionStorage.removeItem('user_email');
+                }
+            } catch (e) {
+                // Si el backend no está accesible, no redirigir a ciegas
+            }
+        })();
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const baseUrl = (document.getElementById('apiUrl').value || storedApiUrl).trim();
+            const errorDiv = document.getElementById('mensajeError');
+
+            errorDiv.style.display = 'none';
+
+            try {
+                const response = await fetch(`${baseUrl}/auth/login`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ email, password })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    const role = data.role || data.rol || 'USER';
+                    sessionStorage.setItem('token', data.token);
+                    sessionStorage.setItem('jwt_token', data.token);
+                    sessionStorage.setItem('role', role);
+                    sessionStorage.setItem('user_role', role);
+                    sessionStorage.setItem('userEmail', email);
+                    sessionStorage.setItem('user_email', email);
+
+                    // Almacenar URL de la API para que las demás páginas la usen
+                    localStorage.setItem('api_url', baseUrl);
+                    localStorage.setItem('nexo.base', baseUrl);
+
+                    window.location.href = 'dashboard.html'; // Redirige al Dashboard
+                } else {
+                    const errData = await response.json().catch(() => null);
+                    const errorMsg = (errData && (errData.message || errData.error)) || 'Credenciales inválidas. Verifica tu correo y contraseña.';
+                    errorDiv.textContent = errorMsg;
+                    errorDiv.style.display = 'block';
+                }
+            } catch (error) {
+                errorDiv.textContent = `No se pudo conectar con el servidor (${baseUrl}). Verifica que el Backend esté encendido.`;
+                errorDiv.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
