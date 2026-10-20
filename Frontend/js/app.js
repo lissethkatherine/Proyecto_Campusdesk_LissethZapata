@@ -7,7 +7,7 @@
 
 (function () {
   // 1. Configuración de API y URLs
-  const BASE_URL = 'https://proyectocampusdesklissethzapata-production.up.railway.app/';
+  const BASE_URL = window.CAMPUSDESK_API_URL;
 
   // 2. Estado de la Aplicación
   const AppState = {
