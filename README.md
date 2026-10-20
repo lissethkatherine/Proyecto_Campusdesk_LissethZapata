@@ -6,7 +6,7 @@
 
 ## 1. Autora
 
-- **Alisson** — desarrollo individual (backend, base de datos, frontend, pruebas y documentación).
+- **Lisseth Zapata** — desarrollo individual (backend, base de datos, frontend, pruebas y documentación).
 
 ---
 
