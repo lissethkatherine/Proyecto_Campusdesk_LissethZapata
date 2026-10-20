@@ -247,4 +247,4 @@ Desde la raíz del proyecto:
 
 ### Catálogo de Evidencias
 Consulte la documentación detallada de evidencias y la guía de capturas visuales en:
-- [docs/evidencias/README.md](docs/evidencias/README.md)
+- [docs/evidencias](docs/evidencias)
