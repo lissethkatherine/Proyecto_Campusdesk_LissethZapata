@@ -55,8 +55,7 @@
      */
     logout: async function () {
       const token = this.getToken();
-      const baseUrl = localStorage.getItem('api_url')
-        || (window.location.port === '5506' ? window.location.origin : 'http://localhost:8056');
+      const baseUrl = window.CAMPUSDESK_API_URL;
 
       if (token) {
         try {
