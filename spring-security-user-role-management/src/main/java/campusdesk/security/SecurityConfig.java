@@ -24,6 +24,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -113,7 +114,11 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(allowedOrigins);
+        // Orígenes de la variable CORS_ALLOWED_ORIGINS + cualquier puerto de localhost/127.0.0.1 (desarrollo local)
+        List<String> originPatterns = new ArrayList<>(allowedOrigins);
+        originPatterns.add("http://localhost:*");
+        originPatterns.add("http://127.0.0.1:*");
+        configuration.setAllowedOriginPatterns(originPatterns);
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type", "Accept", "X-Requested-With"));
         configuration.setExposedHeaders(List.of("Authorization"));
