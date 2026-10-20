@@ -86,6 +86,7 @@
     </div>
   </footer>
 
+  <script src="js/config.js"></script>
   <script>
     'use strict';
 
@@ -93,8 +94,7 @@
     const alertBox = document.getElementById('alertBox');
     const submitBtn = document.getElementById('submitBtn');
 
-    const BASE_URL = localStorage.getItem('api_url')
-      || (window.location.port === '5506' ? window.location.origin : 'http://localhost:8056');
+    const BASE_URL = window.CAMPUSDESK_API_URL;
     const API_URL = `${BASE_URL}/auth/login`;
 
     // Verificación de sesión previa validando contrato con el backend (sin confiar a ciegas en el token)
