@@ -7,8 +7,7 @@
 
 (function () {
   // 1. Configuración de API y URLs
-  const BASE_URL = localStorage.getItem('api_url')
-    || (window.location.port === '5506' ? window.location.origin : 'https://proyectocampusdesklissethzapata-production.up.railway.app/');
+  const BASE_URL = 'https://proyectocampusdesklissethzapata-production.up.railway.app/';
 
   // 2. Estado de la Aplicación
   const AppState = {
