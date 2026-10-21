@@ -56,6 +56,13 @@ public class TicketComment {
     @JoinColumn(name = "author_id", nullable = false)
     private User author;
 
+    // Ejercicio 9: bandera "comentario interno". Un comentario interno solo lo ven ADMIN y TECHNICIAN; el solicitante nunca.
+    // - boolean primitivo: nunca es null, y el Builder de Lombok lo deja en false si no se indica (comentario público).
+    // - columnDefinition "boolean default false": cuando Hibernate agrega esta columna a una tabla que YA tiene filas
+    //   (como la de Neon), las filas existentes toman false y no falla el "NOT NULL". Sin el default, el arranque fallaría.
+    @Column(name = "interno", nullable = false, columnDefinition = "boolean default false")
+    private boolean interno;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
