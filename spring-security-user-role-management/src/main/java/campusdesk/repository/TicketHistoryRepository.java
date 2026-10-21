@@ -1,12 +1,15 @@
 package campusdesk.repository;
 
 import campusdesk.entity.TicketHistory;
+import campusdesk.entity.TicketStatus;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.Instant;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Repositorio JPA para el historial y trazabilidad inmutable de estados de cada incidencia (RF-06).
@@ -19,4 +22,9 @@ public interface TicketHistoryRepository extends JpaRepository<TicketHistory, Lo
            "WHERE h.ticket.id = :ticketId " +
            "ORDER BY h.fechaCambio ASC")
     List<TicketHistory> findByTicketIdOrderByFechaCambioAsc(@Param("ticketId") Long ticketId);
+
+    // Ejercicio 2: fecha de la última vez que el ticket pasó al estado indicado (ej. RESUELTA)
+    @Query("SELECT MAX(h.fechaCambio) FROM TicketHistory h " +
+           "WHERE h.ticket.id = :ticketId AND h.estadoNuevo = :estado")
+    Optional<Instant> findLastTransitionDate(@Param("ticketId") Long ticketId, @Param("estado") TicketStatus estado);
 }
