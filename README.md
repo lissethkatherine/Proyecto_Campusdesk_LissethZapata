@@ -246,5 +246,5 @@ Desde la raíz del proyecto:
 *Ejecute el script con el sistema levantado y anexe la captura del resultado en `docs/evidencias/`.*
 
 ### Catálogo de Evidencias
-Consulte la documentación detallada de evidencias y la guía de capturas visuales en:
+ Capturas visuales en:
 - [docs/evidencias](docs/evidencias)
