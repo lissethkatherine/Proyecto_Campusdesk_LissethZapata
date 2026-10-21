@@ -9,6 +9,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -24,7 +26,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.time.Duration;
 import java.time.Instant;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Entidad principal que representa una incidencia o ticket de soporte en CAMPUSDESK (RF-03).
@@ -37,7 +42,7 @@ import java.time.Instant;
 @AllArgsConstructor
 @Builder
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@ToString(exclude = {"solicitante", "tecnico"})
+@ToString(exclude = {"solicitante", "tecnico", "tags"})
 public class Ticket {
 
     @Id
@@ -79,6 +84,25 @@ public class Ticket {
     @Column(name = "category", nullable = false, length = 30)
     private TicketCategory category;
 
+    // Ejercicio 1: etiquetas transversales (dueño de la relación ManyToMany)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "ticket_tags",
+            joinColumns = @JoinColumn(name = "ticket_id"),
+            inverseJoinColumns = @JoinColumn(name = "tag_id")
+    )
+    @Builder.Default
+    private Set<Tag> tags = new HashSet<>();
+
+    // Ejercicio 2: cantidad de veces que el solicitante reabrió el ticket
+    @Column(name = "reaperturas_count", nullable = false, columnDefinition = "integer default 0")
+    private int reaperturasCount;
+
+    // Ejercicio 8: fecha límite de atención (SLA). Se calcula sola: createdAt + horas según la prioridad.
+    // Es nullable (sin "nullable = false") para no romper los tickets que ya existen en la base de datos.
+    @Column(name = "fecha_limite")
+    private Instant fechaLimite;
+
     @Column(name = "created_at", nullable = false, updatable = false)
     private Instant createdAt;
 
@@ -93,10 +117,23 @@ public class Ticket {
         if (this.status == null) {
             this.status = TicketStatus.ABIERTA;
         }
+        recalcularFechaLimite();
     }
 
     @PreUpdate
     protected void onUpdate() {
         this.updatedAt = Instant.now();
+        // Si la prioridad cambió (p. ej. al escalar en el Ejercicio 6), el SLA se recalcula automáticamente.
+        // Se recalcula SIEMPRE porque la fórmula es pura (solo depende de createdAt y prioridad): no hace falta detectar el cambio.
+        recalcularFechaLimite();
+    }
+
+    /** SLA = fecha de creación + horas de la prioridad actual. Es una función pura, por eso se puede recalcular siempre. */
+    private void recalcularFechaLimite() {
+        // Protección contra null: en un objeto aún sin createdAt o sin prioridad no se puede calcular nada
+        if (this.createdAt != null && this.priority != null) {
+            // Instant.plus(Duration) suma horas a una fecha; Duration.ofHours convierte el número del enum en duración
+            this.fechaLimite = this.createdAt.plus(Duration.ofHours(this.priority.getSlaHoras()));
+        }
     }
 }
