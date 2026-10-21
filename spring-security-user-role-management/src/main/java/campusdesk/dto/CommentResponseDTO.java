@@ -22,6 +22,9 @@ public class CommentResponseDTO {
 
     private String content;
 
+    // Ejercicio 9: indica si es una nota interna del personal de soporte (el front puede mostrarla con otro estilo)
+    private boolean interno;
+
     private UserResponseDTO author;
 
     private Instant createdAt;
